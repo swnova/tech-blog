@@ -1,16 +1,23 @@
+const path = require('path');
+require('dotenv').config();
 const express = require('express');
+const sequelize = require('./config/connection');
 const session = require('express-session');
 const routes = require('./controllers');
-const exphbs = require('express-handlebars');
 
-const sequelize = require('./config/connection');
+const helpers = require('./utils/helpers');
+
+require('dotenv').config();
+const exphbs = require('express-handlebars');
+const hbs = exphbs.create({helpers});
+
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
 const sess = {
-  secret: process.env.SESSION_SECRET,
+  secret: 'notsosecret',
   cookie: {
     maxAge:1000*60*60*2
   },
@@ -22,9 +29,9 @@ const sess = {
 };
 
 //middleware
-app.use(express.static("public"))
+app.use(express.static(path.join(__dirname, 'public')))
 
-const hbs = exphbs.create({});
+
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
