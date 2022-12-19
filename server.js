@@ -9,7 +9,7 @@ const helpers = require('./utils/helpers');
 
 require('dotenv').config();
 const exphbs = require('express-handlebars');
-const hbs = exphbs.create({helpers});
+
 
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
@@ -27,6 +27,8 @@ const sess = {
     db: sequelize
   })
 };
+app.use(session(sess));
+const hbs = exphbs.create({helpers});
 
 //middleware
 app.use(express.static(path.join(__dirname, 'public')))
@@ -35,13 +37,12 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
-app.use(session(sess));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(routes);
-
-sequelize.sync({ force: false }).then(() => {
-  app.listen(PORT, () => console.log('Now listening'));
+app.listen(PORT, () => {
+  console.log(`App listening on port ${PORT}!`);
+  sequelize.sync({ force: false });
 });

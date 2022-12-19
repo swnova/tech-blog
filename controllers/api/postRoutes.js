@@ -3,34 +3,9 @@ const { User, Post, Comment} = require('../../models');
 const sequelize = require('../../config/connection');
 const withAuth = require('../../utils/auth');
 
-router.get('/', (req, res)=> {
-    Post.findAll({
-        attributes: [
-            'id',
-            'post_text',
-            'title',
-            'created_at',
-        ],
-        include:[
-            {
-                model: User,
-                attributes:['username']
-            },
-            {
-                model: Comment,
-                attributes:[
-                    'id',
-                    'comment_text',
-                    'post_id',
-                    'user_id',
-                    'created_at'
-                ],
-                include:{
-                    model: User,
-                    attributes: ['username']
-                }
-            }
-        ]
+router.post('/', (req, res)=> {
+    Post.create(req.body, {
+        user_id: req.session.user_id
     }).then(dbPostData=> res.json(dbPostData))
     .catch(err =>{
         console.log(err);
