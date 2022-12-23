@@ -3,6 +3,14 @@ Model-View-Controller (MVC) Challenge: Tech Blog
 
 ## Description
 
+Tech Blog application where users can create and comment on posts about tech/coding.
+
+## Screenshots
+<img width="1294" alt="Screen Shot 2022-12-22 at 11 15 57 PM" src="https://user-images.githubusercontent.com/113868025/209290223-11f85b41-8eae-4545-88d9-28b51ebb6e2b.png">
+
+### Deployed =>
+https://socialssw-app.herokuapp.com/
+
 -User Story-
 AS A developer who writes about tech
 I WANT a CMS-style blog site
@@ -43,5 +51,4 @@ THEN I am signed out of the site
 WHEN I am idle on the site for more than a set time
 THEN I am able to view comments but I am prompted to log in again before I can add, update, or delete comments```
 
-## Screenshots
-<img width="1294" alt="Screen Shot 2022-12-22 at 11 15 57 PM" src="https://user-images.githubusercontent.com/113868025/209290223-11f85b41-8eae-4545-88d9-28b51ebb6e2b.png">
+
