@@ -65,10 +65,10 @@ router.post('/login', (req, res)=>{
     })
 })
 
-router.post('/logout', (req, res)=>{
+router.post('/logout', withAuth, (req, res)=>{
     if (req.session.loggedIn) {
         req.session.destroy(()=>{
-            res.status(404).end();
+            res.status(200).end();
         })
     }
     res.status(404).end();

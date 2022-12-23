@@ -3,9 +3,10 @@ const { User, Post, Comment} = require('../../models');
 const sequelize = require('../../config/connection');
 const withAuth = require('../../utils/auth');
 
-router.post('/', (req, res)=> {
-    Post.create(req.body, {
-        userId: req.session.userId
+router.post('/', withAuth, (req, res)=> {
+    Post.create({
+        title: req.body.title,
+        body: req.body.body
     }).then(dbPostData=> res.json(dbPostData))
     .catch(err =>{
         console.log(err);
