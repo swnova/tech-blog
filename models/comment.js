@@ -4,7 +4,7 @@ const sequelize= require('../config/connection');
 class Comment extends Model {}
 
 Comment.init({
-    body: {
+    comment_body: {
         type: DataTypes.STRING,
         allowNull: false
     }

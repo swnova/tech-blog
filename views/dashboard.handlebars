@@ -1,3 +1,20 @@
+<section class="row">
+    <h1>Make a Post!</h1>
+
+    <form class="new-post-form">
+        <div>
+            <label for="post-title">TITLE</label>
+            <input type="text" id="post-title" name="post-title"/>
+        </div>
+        <div>
+            <label for="post-body">YOUR POST</label>
+            <textarea id="post-body" name="post-body"></textarea>
+        </div>
+        <button type="submit" class="btn">ADD Post</button>
+    </form>
+</section>
+
+
 {{#if posts.length}}
 
 <section>
@@ -8,6 +25,5 @@
 </section>
 {{/if}}
 
-<button type="submit" class="btn"><a class="link" href="/dashboard/new">+ NEW Post</a></button>
 
-<script src="/javascript/add-post.js"></script>
+<script src="/js/create-post.js"></script>

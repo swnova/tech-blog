@@ -5,7 +5,7 @@ const withAuth = require('../../utils/auth');
 
 router.post('/', (req, res)=> {
     Post.create(req.body, {
-        user_id: req.session.user_id
+        userId: req.session.userId
     }).then(dbPostData=> res.json(dbPostData))
     .catch(err =>{
         console.log(err);
@@ -19,10 +19,9 @@ router.get('/:id', (req, res) =>{
             id: req.params.id
         },
         attributes: [
-            'id',
-            'post_text',
+            
             'title',
-            'created_at',
+            'body',
         ],
         include:[
             {
@@ -32,11 +31,8 @@ router.get('/:id', (req, res) =>{
             {
                 model: Comment,
                 attributes:[
-                    'id',
-                    'comment_text',
-                    'post_id',
-                    'user_id',
-                    'created_at'
+                    
+                    'comment_body'
                 ],
                 include:{
                     model: User,

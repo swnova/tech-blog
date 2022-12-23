@@ -1,5 +1,6 @@
 const router= require('express').Router()
-const {Post}= require('../models')
+const sequelize = require('../config/connection');
+const {Post, User}= require('../models')
 
 router.get('/', (req, res)=>{
     Post.findAll({
@@ -7,6 +8,7 @@ router.get('/', (req, res)=>{
     }).then(dbPostData =>{
         const posts= dbPostData.map(post=> post.get({plain:true}));
         res.render('homepage',{
+          loggedIn: req.sessionStore.loggedIn,
             posts
         });
     })
@@ -29,7 +31,7 @@ router.get('/signup', (req, res)=>{
     res.redirect('/');
     return;
   }
-    res.render('signup');
+    res.render('sign-up');
 });
 
 router.get('/post/:id', (req, res)=>{
